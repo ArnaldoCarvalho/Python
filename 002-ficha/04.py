@@ -1,6 +1,8 @@
 ''' função principal '''
 def main():
-
+    x = input(" Introduça uma String: ")
+    x = x.replace(" ",'')
+    print("O resultado da string sem espaços é: ", x)
     ''' É Utilizado este input para permitir o utilizador ler os dados antes do programa encerrar '''
     input()
 

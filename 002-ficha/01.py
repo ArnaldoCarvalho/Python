@@ -1,7 +1,7 @@
+
 ''' função principal '''
 def main():
-
-    ''' É Utilizado este input para permitir o utilizador ler os dados antes do programa encerrar '''
+    x = 10
     input()
 
 ''' Chamada do main para ver se ele está funcionando '''

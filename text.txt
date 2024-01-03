@@ -1,0 +1,4 @@
+|França|Paris|
+|Portugal|Lisboa|
+|Espanha|Madrid|
+|Luxemburgo|Luxemburgo|
