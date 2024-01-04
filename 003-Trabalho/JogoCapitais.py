@@ -18,7 +18,9 @@ def load():
         file = open('./text.txt','r')
         fileS = file.read().split('|')
         count = 0
-        for x in fileS:
+        for i in fileS:
+            if count+1 >= len(fileS):
+                return 1
             paises.append(fileS[count+1])
             capitais.append(fileS[count+2])
             count = count + 3
@@ -29,45 +31,45 @@ def load():
     
 def game():
     if (load()==0):
-        return
+        print("Aconteceu um erro no carregamentos dos paises e capitais para o jogo")
+        return 0
     vitoria = 0
-    load()
 
-    for x in range(4):
+    i=0
+    while i != 4:
         y = random.randint(1,len(paises))
         pais = paises[y]
         capital = capitais[y]
-
-        print('Qual a capital da ', pais)
+        
+        print("Qual a capital da ", pais)
 
         poss = random.randint(1,4)
-
         if poss == 1:
-            print('A) ',capital) 
-            print('B) ')
-            print('C) ')
-            print('D) ')
-        if poss == 1:
-            print('A) ') 
-            print('B) ',capital)
-            print('C) ')
-            print('D) ')
-        if poss == 1:
-            print('A) ') 
-            print('B) ')
-            print('C) ',capital)
-            print('D) ')
-        if poss == 1:
-            print('A) ') 
-            print('B) ')
-            print('C) ')
-            print('D) ',capital)
+            print("A ",capital) 
+            print("B ")          
+            print("C ")
+            print("D ")
+        if poss == 2:
+            print("A ") 
+            print("B ",capital)
+            print("C ")
+            print("D ")
+        if poss == 3:
+            print("A ") 
+            print("B ")
+            print("C ",capital)
+            print("D ")
+        if poss == 4:
+            print("A ") 
+            print("B ")
+            print("C ")
+            print("D ",capital)
 
 
         v = 0
         result = 0
         while v == 0:
-            resposta = input("Introduza a letra da opção")
+            resposta = input("Introduza a letra da opção: ")
             resposta = resposta.upper()
 
             if resposta == 'A':
@@ -90,9 +92,14 @@ def game():
         
         if result == poss:
             vitoria = vitoria + 1
-            
-    return vitoria
+            print("Resposta Certa")
+        else:
+            print("Resposta Errada")
+        i = i+1
 
+    return vitoria
+        
+        
 ''' Chamada do main para ver se ele está funcionando '''
 if __name__ == '__main__':
     main()
