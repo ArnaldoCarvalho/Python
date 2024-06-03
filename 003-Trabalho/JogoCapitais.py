@@ -4,12 +4,12 @@ paises = []
 capitais = []
 
 def main():
-    
+
     input('Introduza qualquer digito para iniciar o jogo ')
     vitoria = 0
     vitoria = game() 
     print(' Parabéns acertou ',vitoria, ' respostas')
-    
+
     ''' É Utilizado este input para permitir o utilizador ler os dados antes do programa encerrar '''
     input()
 
@@ -28,41 +28,97 @@ def load():
     except:
         print('erro no carregamento do ficheiro')
         return 0
-    
+
+def randomC(capitais2):
+    v = 0
+    while v == 0:
+        n = random.randint(0,len(paises)-1)
+        if capitais2[n] != '':
+            v=1
+            return n
+    return 0
+
+def randomY(capitaisUse):
+  v = 0
+  y = 0
+  while v == 0:
+      v = 1
+      y = random.randint(0,len(paises)-1)
+      for x in range(len(capitaisUse)):
+          if capitaisUse[x]==capitais[y]:
+              v=0
+  return y 
+
 def game():
     if (load()==0):
         print("Aconteceu um erro no carregamentos dos paises e capitais para o jogo")
         return 0
     vitoria = 0
-
+    capitais2 = []
+    capitaisUse = []
     i=0
+    y=0
     while i != 4:
-        y = random.randint(1,len(paises))
-        pais = paises[y]
-        capital = capitais[y]
-        
+
+        if i != 0:
+            y=randomY(capitaisUse)
+            pais = paises[y]
+            capital = capitais[y]
+        else:
+            y = random.randint(0,len(paises)-1)
+            pais = paises[y]
+            capital = capitais[y]
+
+        capitais2 = capitais.copy()
+        capitais2[y]= ''
         print("Qual a capital da ", pais)
+        capitaisUse.append(capitais[y])
 
         poss = random.randint(1,4)
+        n=0
         if poss == 1:
             print("A ",capital) 
-            print("B ")          
-            print("C ")
-            print("D ")
+            n = randomC(capitais2)
+            print("B ",capitais2[n])
+            capitais2[n]=''
+            n = randomC(capitais2)
+            print("C ",capitais2[n])
+            capitais2[n]=''
+            n = randomC(capitais2)
+            print("D ",capitais2[n])
+            capitais2[n]=''
         if poss == 2:
-            print("A ") 
+            n = randomC(capitais2)
+            print("A ",capitais2[n]) 
+            capitais2[n]=''
             print("B ",capital)
-            print("C ")
-            print("D ")
+            n = randomC(capitais2)
+            print("C ",capitais2[n])
+            capitais2[n]=''
+            n = randomC(capitais2)
+            print("D ",capitais2[n])
+            capitais2[n]=''
         if poss == 3:
-            print("A ") 
-            print("B ")
+            n = randomC(capitais2)
+            print("A ",capitais2[n]) 
+            capitais2[n]=''
+            n = randomC(capitais2)
+            print("B ",capitais2[n])
+            capitais2[n]=''
             print("C ",capital)
-            print("D ")
+            n = randomC(capitais2)
+            print("D ",capitais2[n])
+            capitais2[n]=''
         if poss == 4:
-            print("A ") 
-            print("B ")
-            print("C ")
+            n = randomC(capitais2)
+            print("A ",capitais2[n]) 
+            capitais2[n]=''
+            n = randomC(capitais2)
+            print("B ",capitais2[n])
+            capitais2[n]=''
+            n = randomC(capitais2)
+            print("C ",capitais2[n])
+            capitais2[n]=''
             print("D ",capital)
 
 
@@ -89,7 +145,7 @@ def game():
                             v=1
                         else:
                             v=0
-        
+
         if result == poss:
             vitoria = vitoria + 1
             print("Resposta Certa")
@@ -98,8 +154,8 @@ def game():
         i = i+1
 
     return vitoria
-        
-        
+
+
 ''' Chamada do main para ver se ele está funcionando '''
 if __name__ == '__main__':
     main()
